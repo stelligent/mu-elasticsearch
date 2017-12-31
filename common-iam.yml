@@ -21,6 +21,7 @@ Resources:
             - es:ListDomainNames
             - es:ESHttpGet
             - es:DescribeElasticsearchDomainConfig
+            Resource: '*'
             Effect: Allow
           - Action:
             - iam:CreateServiceLinkedRole
