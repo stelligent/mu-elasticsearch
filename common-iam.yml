@@ -1,0 +1,32 @@
+Resources:
+  CloudFormationRole:
+    Properties:
+      Policies:
+      - PolicyName: deploy-elasticsearch
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Action:
+            - es:UpdateElasticsearchDomainConfig
+            - es:ESHttpPut
+            - es:DescribeElasticsearchDomain
+            - es:DeleteElasticsearchDomain
+            - es:DescribeElasticsearchDomains
+            - es:RemoveTags
+            - es:ESHttpPost
+            - es:CreateElasticsearchDomain
+            - es:ESHttpHead
+            - es:ListTags
+            - es:AddTags
+            - es:ListDomainNames
+            - es:ESHttpGet
+            - es:DescribeElasticsearchDomainConfig
+            Effect: Allow
+          - Action:
+            - iam:CreateServiceLinkedRole
+            - iam:PutRolePolicy
+            Resource: 'arn:aws:iam::*:role/aws-service-role/elasticsearch.amazonaws.com/AWSServiceRoleForElastiCache*'
+            Condition:
+              StringLike:
+                iam:AWSServiceName: elasticsearch.amazonaws.com
+            Effect: Allow
